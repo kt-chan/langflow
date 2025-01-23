@@ -49,6 +49,34 @@
       "label": "Install Backend",
       "type": "shell",
       "command": "make install_backend"
+    },
+    // wait for server
+    {
+      "label": "wait-for-server",
+      "type": "shell",
+      "command": "node",
+      "args": [
+        "${workspaceFolder}/scripts/wait-for-server.js" // Path to the script that waits for the server
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    },
+    // wait for frontend
+    {
+      "label": "wait-for-frontend",
+      "type": "shell",
+      "command": "node",
+      "args": [
+        "${workspaceFolder}/scripts/wait-for-frontend.js" // Path to the script that waits for the server
+      ],
+      "problemMatcher": [],
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
     }
   ]
 }

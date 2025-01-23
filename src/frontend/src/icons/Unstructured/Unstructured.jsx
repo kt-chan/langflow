@@ -1,4 +1,4 @@
-const SvgGoogleGenerativeAI = (props) => (
+const SvgUnstructured = (props) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
@@ -63,4 +63,4 @@ const SvgGoogleGenerativeAI = (props) => (
     </defs>
   </svg>
 );
-export default SvgGoogleGenerativeAI;
+export default SvgUnstructured;

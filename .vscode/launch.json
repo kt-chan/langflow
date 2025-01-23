@@ -2,12 +2,11 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug Backend",
+      "name": "Backend debug",
       "type": "debugpy",
       "request": "launch",
       "module": "uvicorn",
       "preLaunchTask": "Install Backend",
-
       "args": [
         "--factory",
         "langflow.main:create_app",
@@ -15,11 +14,11 @@
         "7860",
         "--reload",
         "--log-level",
-        "debug",
+        "info",
         "--loop",
         "asyncio",
         "--reload-include",
-        "./src/backend/*"
+        "./src/backend/langflow/*"
       ],
       "jinja": true,
       "justMyCode": false,
@@ -30,51 +29,88 @@
       "envFile": "${workspaceFolder}/.env"
     },
     {
-      "name": "Debug CLI",
-      "type": "debugpy",
+      "name": "Frontend debug",
       "request": "launch",
-      "module": "langflow",
-      "args": [
-        "run",
-        "--path",
-        "${workspaceFolder}/src/backend/base/langflow/frontend",
-        "--env-file",
-        "${workspaceFolder}/.env"
+      "cwd": "${workspaceFolder}/src/frontend",
+      "runtimeExecutable": "yarn",
+      "runtimeArgs": [
+        "vite",
+        "--debug",
+        "--host=0.0.0.0",
+        "--port=3000"
       ],
-      // "python": "/path/to/your/python_env/python", // Replace with the path to your Python executable
-      "jinja": true,
-      "justMyCode": false
+      // "runtimeExecutable": "yarn",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "preLaunchTask": "wait-for-server", // This task will run before launching Chrome
+      "type": "node"
     },
     {
-      "name": "Python: Remote Attach",
-      "type": "debugpy",
-      "request": "attach",
-      "justMyCode": true,
-      "connect": {
-        "port": 5678
-      },
-      "pathMappings": [
-        {
-          "localRoot": "${workspaceFolder}",
-          "remoteRoot": "."
-        }
-      ]
-    },
-    {
-      "name": "Debug Frontend",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:3000/",
-      "webRoot": "${workspaceRoot}/src/frontend"
-    },
+      "name": "Launch Chrome",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/src/frontend",
+      "sourceMapPathOverrides": {
+        "file:///*": "${webRoot}/*"
+        // ... other overrides as needed
+      },
+      "preLaunchTask": "wait-for-frontend" // This task will run before launching Chrome
+    }
+    // ,
+    // {
+    //   "name": "Python: Debug Tests",
+    //   "type": "debugpy",
+    //   "request": "launch",
+    //   "program": "${file}",
+    //   "purpose": [
+    //     "debug-test"
+    //   ],
+    //   "console": "integratedTerminal",
+    //   "justMyCode": false
+    // },
+    // {
+    //   "name": "Debug CLI",
+    //   "type": "debugpy",
+    //   "request": "launch",
+    //   "module": "langflow",
+    //   "args": [
+    //     "run",
+    //     "--path",
+    //     "${workspaceFolder}/src/backend/base/langflow/frontend",
+    //     "--env-file",
+    //     "${workspaceFolder}/.env"
+    //   ],
+    //   // "python": "/path/to/your/python_env/python", // Replace with the path to your Python executable
+    //   "jinja": true,
+    //   "justMyCode": false
+    // },
+    // {
+    //   "name": "Python: Remote Attach",
+    //   "type": "debugpy",
+    //   "request": "attach",
+    //   "justMyCode": true,
+    //   "connect": {
+    //     "port": 5678
+    //   },
+    //   "pathMappings": [
+    //     {
+    //       "localRoot": "${workspaceFolder}",
+    //       "remoteRoot": "."
+    //     }
+    //   ]
+    // }
+  ],
+  "compounds": [
     {
-      "name": "Python: Debug Tests",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "${file}",
-      "purpose": ["debug-test"],
-      "console": "integratedTerminal",
-      "justMyCode": false
+      "name": "Full Stack Debug",
+      "configurations": [
+        "Backend debug",
+        "Frontend debug",
+        "Launch Chrome"
+      ],
+      "stopAll": true
     }
   ]
 }

@@ -162,6 +162,8 @@ dependencies = [
     "fastapi-pagination>=0.12.29,<1.0.0",
     "defusedxml>=0.7.1,<1.0.0",
     "pypdf~=5.1.0",
+    "selenium>=4.25.0",
+    "webdriver_manager>=4.0.2"
 ]
 
 [project.urls]

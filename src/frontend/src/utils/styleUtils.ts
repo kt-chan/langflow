@@ -493,6 +493,7 @@ export const SIDEBAR_CATEGORIES = [
   { display_name: "Tools", name: "tools", icon: "Hammer" },
   { display_name: "Logic", name: "logic", icon: "ArrowRightLeft" },
   { display_name: "Helpers", name: "helpers", icon: "Wand2" },
+  { display_name: "Extensions", name: "extensions", icon: "Blocks" },
 ];
 
 export const SIDEBAR_BUNDLES = [
@@ -543,6 +544,7 @@ export const categoryIcons = {
   tools: Hammer,
   custom: Edit,
   custom_components: GradientInfinity,
+  extension: Blocks,
 };
 
 export const nodeIconsLucide: iconsType = {
@@ -568,6 +570,7 @@ export const nodeIconsLucide: iconsType = {
   textsplitters: Scissors,
   toolkits: Package2,
   tools: Hammer,
+  extension: Blocks,
   custom_components: GradientInfinity,
   ChatInput: MessagesSquare,
   ChatOutput: MessagesSquare,
